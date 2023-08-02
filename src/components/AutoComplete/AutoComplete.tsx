@@ -14,7 +14,7 @@ const AutoComplete = () => {
   return (
     <div className={styles.container}>
       <label className={`${styles.label} ${active && styles.active} `}>
-        AutoComplete
+        Options
       </label>
       <input
         className={styles.input}

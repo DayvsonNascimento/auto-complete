@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  max-width: 77.75rem;
+  display: flex;
+  margin: 0px auto;
+  align-items: center;
+  margin-top: 4rem;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0px 0 10px;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  letter-spacing: 0.1px;
+  color: var(--muidocs-palette-grey-900, #1c2025);
+  font-weight: 600;
+}
+
+.content {
+  width: 370px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 52px;
+  box-shadow: 0 1px 1px 1px #e3e3e3;
+  border-radius: 5px;
+  color: #7a7a7a;
+
+}

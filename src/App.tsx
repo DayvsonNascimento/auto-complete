@@ -1,10 +1,9 @@
-import AutoComplete from './components/AutoComplete/AutoComplete';
+import CustomInputContainer from './containers/CustomInputContainer';
 
 const App = () => {
   return (
     <div>
-      <h1>Auto Complete</h1>
-      <AutoComplete />
+      <CustomInputContainer />
     </div>
   );
 };
