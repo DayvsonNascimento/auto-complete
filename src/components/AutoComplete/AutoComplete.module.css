@@ -43,11 +43,24 @@
 }
 
 .resultsContainer {
-  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.1) 0px 4px 11px;
+
+  overflow-y: auto;
+  position: relative;
+  max-height: 300px;
+  z-index: 99999;
+  top: 100%;
+  position: absolute;
+  width: 100%;
+  background-color: white;
 }
 
 .resultItem {
-  padding: 8px 0px 8px 5px;
+  padding: 8px;
+  color: black;
 }
 
 .resultItem:hover {

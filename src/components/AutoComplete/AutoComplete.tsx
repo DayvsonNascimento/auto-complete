@@ -51,9 +51,9 @@ const AutoComplete = () => {
         Options
       </label>
       <input
+        className={styles.input}
         value={query}
         onChange={(event) => setQuery(event.target.value)}
-        className={styles.input}
         onFocus={handleFocus}
         onBlur={handleOnBlur}
       ></input>
@@ -63,6 +63,10 @@ const AutoComplete = () => {
           {options.map((option) => (
             <div className={styles.resultItem}>{option}</div>
           ))}
+
+          {!!!options?.length && (
+            <div className={styles.resultItem}>No results...</div>
+          )}
         </div>
       )}
     </div>
