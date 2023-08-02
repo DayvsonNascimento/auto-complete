@@ -28,7 +28,6 @@
 .active {
   transform: translateY(-0.5rem);
   font-size: 0.7rem;
-  color: rgb(122, 193, 251);
 }
 
 .input {
@@ -41,4 +40,16 @@
   box-sizing: border-box;
   font-size: 14px;
   cursor: text;
+}
+
+.resultsContainer {
+  border: 1px solid #ddd;
+}
+
+.resultItem {
+  padding: 8px 0px 8px 5px;
+}
+
+.resultItem:hover {
+  background-color: #deecff;
 }
