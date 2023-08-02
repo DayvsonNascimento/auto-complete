@@ -1,16 +1,23 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, SetStateAction, Dispatch, useRef } from 'react';
 
 import styles from './AutoComplete.module.css';
 
-interface Movie {
-  title: string;
+interface AutoCompleteProps {
+  label: string;
+  options: string[];
+  query: string;
+  setQuery: Dispatch<SetStateAction<string>>;
 }
 
-const AutoComplete = () => {
+const AutoComplete = ({
+  label,
+  options,
+  query,
+  setQuery,
+}: AutoCompleteProps) => {
   const [active, setActive] = useState(false);
-  const [options, setOptions] = useState([]);
   const [showOtpions, setShowOptions] = useState(false);
-  const [query, setQuery] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFocus = () => {
     setActive(true);
@@ -22,37 +29,30 @@ const AutoComplete = () => {
     setShowOptions(false);
   };
 
-  const getOptionsbyQuery = useCallback(async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3004/movies?title_like=${query}`
-      );
-      const data = await response.json();
+  const handleMouseDown = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event?.preventDefault();
+  };
 
-      const moviesTitles = data?.map((movie: Movie) => movie.title) || [];
+  const handleClick = (query: string) => {
+    setQuery(query);
+    setShowOptions(false);
 
-      setOptions(moviesTitles);
-    } catch (error) {
-      console.error(error);
-
-      setOptions([]);
-    }
-  }, [query]);
-
-  useEffect(() => {
-    getOptionsbyQuery();
-  }, [query]);
+    inputRef?.current?.blur();
+  };
 
   return (
     <div className={styles.container}>
       <label
         className={`${styles.label} ${(active || query) && styles.active} `}
       >
-        Options
+        {label}
       </label>
       <input
         className={styles.input}
         value={query}
+        ref={inputRef}
         onChange={(event) => setQuery(event.target.value)}
         onFocus={handleFocus}
         onBlur={handleOnBlur}
@@ -60,8 +60,15 @@ const AutoComplete = () => {
 
       {showOtpions && (
         <div className={styles.resultsContainer}>
-          {options.map((option) => (
-            <div className={styles.resultItem}>{option}</div>
+          {options.map((option, index) => (
+            <div
+              key={index}
+              className={styles.resultItem}
+              onMouseDown={(event) => handleMouseDown(event)}
+              onClick={() => handleClick(option)}
+            >
+              {option}
+            </div>
           ))}
 
           {!!!options?.length && (
